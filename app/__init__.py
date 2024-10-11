@@ -3,7 +3,9 @@ from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import logging
+from dotenv import load_dotenv
 
+load_dotenv()
 app = Flask(__name__)
 app.config.from_object(Config)
 
