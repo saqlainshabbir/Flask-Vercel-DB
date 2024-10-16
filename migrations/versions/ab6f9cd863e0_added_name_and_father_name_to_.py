@@ -21,11 +21,7 @@ def upgrade():
     with op.batch_alter_table('subscription', schema=None) as batch_op:
         batch_op.add_column(sa.Column('name', sa.String(length=120), nullable=False, server_default='Unknown'))
         batch_op.add_column(sa.Column('father_name', sa.String(length=120), nullable=False, server_default='Unknown'))
-
-    # Remove server defaults once the migration is complete
-    op.execute("ALTER TABLE subscription ALTER COLUMN name DROP DEFAULT")
-    op.execute("ALTER TABLE subscription ALTER COLUMN father_name DROP DEFAULT")
-
+        batch_op.add_column(sa.Column('phone_number', sa.String(length=120), nullable=False, server_default='Unknown'))
 
 def downgrade():
     # Remove the added columns in case of downgrade
