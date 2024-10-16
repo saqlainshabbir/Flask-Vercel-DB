@@ -11,7 +11,8 @@ def subscribe():
     email = request.form['email']
     name = request.form['name']
     father_name = request.form['father_name']
-    new_subscription = Subscription(email=email, name=name, father_name=father_name)
+    phone_number = request.form['phone_number']
+    new_subscription = Subscription(email=email, name=name, father_name=father_name, phone_number=phone_number)
     db.session.add(new_subscription)
     db.session.commit()
     flash('Subscription successful!!', 'success')
