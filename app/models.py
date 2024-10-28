@@ -10,8 +10,12 @@ class Subscription(db.Model):
     subscribed_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
 # New schema for storing newsletter details
-class Newsletter(db.Model):
+class Agriculture_shops(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(255), nullable=False)
-    content = db.Column(db.Text, nullable=False)
+    name = db.Column(db.String(255), nullable=False)
+    contact = db.Column(db.Integer, nullable=False)
+    district = db.Column(db.String(10), nullable=False)
+    tehsil = db.Column(db.String(10), nullable=False)
+    address = db.Column(db.String(255), nullable=False)
+    town = db.Column(db.String(255), nullable=False)
     published_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)

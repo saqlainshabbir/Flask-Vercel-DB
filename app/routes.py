@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, url_for, flash
 from app import app, db
-from app.models import Subscription, Newsletter
+from app.models import Subscription, Agriculture_shops
 from sqlalchemy.exc import IntegrityError
 
 @app.route('/')
@@ -23,11 +23,15 @@ def subscribe():
         flash('This email is already subscribed.', 'error')
     return redirect(url_for('index'))
 
-@app.route('/newsletter', methods=['POST'])
+@app.route('/Agriculture_shops', methods=['POST'])
 def add_newsletter():
-    title = request.form['title']
-    content = request.form['content']
-    new_newsletter = Newsletter(title=title, content=content)
+    name = request.form['name']
+    contact = request.form['contact']
+    district = request.form['district']
+    tehsil = request.form['tehsil']
+    address = request.form['address']
+    town = request.form['town']
+    new_newsletter = Agriculture_shops(name=name, contact=contact, district=district, tehsil=tehsil, address=address, town=town)
     db.session.add(new_newsletter)
     db.session.commit()
     flash('Newsletter created successfully!', 'success')
