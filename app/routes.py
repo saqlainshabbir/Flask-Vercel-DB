@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, url_for, flash
 from app import app, db
-from app.models import Subscription, Solar_shops, Karyana_shops, Real_estates, Agriculture_shops
+from app.models import Subscription, Solar_shops, Karyana_shops, Real_estates, Bird_shops, Agriculture_shops
 from sqlalchemy.exc import IntegrityError
 
 @app.route('/')
@@ -77,4 +77,18 @@ def Real_estate():
     db.session.add(new_newsletter)
     db.session.commit()
     flash('Newsletter created successfully!', 'success')
+    return redirect(url_for('index'))
+
+@app.route('/Bird_shops', methods=['POST'])
+def Bird_shop():
+    name = request.form['name']
+    phone_number = request.form['phone_number']
+    district = request.form['district']
+    tehsil = request.form['tehsil']
+    address = request.form['address']
+    town = request.form['town']
+    new_newsletter = Bird_shops(name=name, phone_number=phone_number, district=district, tehsil=tehsil, address=address, town=town)
+    db.session.add(new_newsletter)
+    db.session.commit()
+    flash('Birds shop created successfully!', 'success')
     return redirect(url_for('index'))
