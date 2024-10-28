@@ -108,3 +108,10 @@ class Hotels(db.Model):
     address = db.Column(db.String(200), nullable=False)
     town = db.Column(db.String(50), nullable=False)
     published_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+# New schema for storing Lodhran Profile details
+class Lodhran_profile(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    discription = db.Column(db.String(200), nullable=False)
+    published_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
