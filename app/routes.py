@@ -26,12 +26,12 @@ def subscribe():
 @app.route('/Agriculture_shops', methods=['POST'])
 def add_newsletter():
     name = request.form['name']
-    contact = request.form['contact']
+    phone_number = request.form['phone_number']
     district = request.form['district']
     tehsil = request.form['tehsil']
     address = request.form['address']
     town = request.form['town']
-    new_newsletter = Agriculture_shops(name=name, contact=contact, district=district, tehsil=tehsil, address=address, town=town)
+    new_newsletter = Agriculture_shops(name=name, phone_number=phone_number, district=district, tehsil=tehsil, address=address, town=town)
     db.session.add(new_newsletter)
     db.session.commit()
     flash('Newsletter created successfully!', 'success')
