@@ -154,6 +154,16 @@
     </form>
 </div>
 
+
+<div class="popup">
+    <form class="form" action="{{ url_for('add_newsletter') }}" method="POST">
+        <div class="section-title">Create a Newsletter</div>
+        <input placeholder="Newsletter Title" name="title" type="text" class="input_field" required>
+        <textarea placeholder="Newsletter Content" name="content" class="textarea_field" required></textarea>
+        <button class="submit">Create Newsletter</button>
+    </form>
+</div>
+
 {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
         {% for category, message in messages %}
