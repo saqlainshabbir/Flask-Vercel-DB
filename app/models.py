@@ -115,3 +115,14 @@ class Lodhran_profile(db.Model):
     name = db.Column(db.String(100), nullable=False)
     discription = db.Column(db.String(200), nullable=False)
     published_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+# New schema for storing Marriage Halls Data details
+class Marriage_halls(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    phone_number = db.Column(db.String(15), nullable=False)
+    district = db.Column(db.String(50), nullable=False)
+    tehsil = db.Column(db.String(50), nullable=False)
+    address = db.Column(db.String(200), nullable=False)
+    town = db.Column(db.String(50), nullable=False)
+    published_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
