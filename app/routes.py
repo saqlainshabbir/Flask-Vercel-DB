@@ -5,7 +5,7 @@ from app.models import (
     fast_foods, Housing_schemes, Madaris, Hotels, Lodhran_profile, 
     Marriage_halls, Union_councils, Lawyers, Furniture_shops, 
     Software_houses, Dentals, Electronics_shops, Electrical_stores, 
-    Sports_shops, Agriculture_shops
+    Sports_shops, Car_washses, Agriculture_shops
 )
 from sqlalchemy.exc import IntegrityError
 
@@ -285,4 +285,18 @@ def Sports_shop():
     db.session.add(new_newsletter)
     db.session.commit()
     flash('Sports Shops data Added successfully!', 'success')
+    return redirect(url_for('index'))
+
+@app.route('/Car_washses', methods=['POST'])
+def Car_wash():
+    name = request.form['name']
+    phone_number = request.form['phone_number']
+    district = request.form['district']
+    tehsil = request.form['tehsil']
+    address = request.form['address']
+    town = request.form['town']
+    new_newsletter = Car_washses(name=name, phone_number=phone_number, district=district, tehsil=tehsil, address=address, town=town)
+    db.session.add(new_newsletter)
+    db.session.commit()
+    flash('Car wash data Added successfully!', 'success')
     return redirect(url_for('index'))
