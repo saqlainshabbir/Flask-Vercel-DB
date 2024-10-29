@@ -1,6 +1,11 @@
 from flask import render_template, request, redirect, url_for, flash
 from app import app, db
-from app.models import Subscription, Solar_shops, Karyana_shops, Real_estates, Bird_shops, fast_foods, Housing_schemes, Madaris, Hotels, Lodhran_profile, Marriage_halls, Union_councils, Lawyers, Furniture_shops, Software_houses, Agriculture_shops
+from app.models import (
+    Subscription, Solar_shops, Karyana_shops, Real_estates, Bird_shops, 
+    fast_foods, Housing_schemes, Madaris, Hotels, Lodhran_profile, 
+    Marriage_halls, Union_councils, Lawyers, Furniture_shops, 
+    Software_houses, Dentals, Agriculture_shops
+)
 from sqlalchemy.exc import IntegrityError
 
 @app.route('/')
@@ -223,4 +228,18 @@ def Software_house():
     db.session.add(new_newsletter)
     db.session.commit()
     flash('Software Houses data Added successfully!', 'success')
+    return redirect(url_for('index'))
+
+@app.route('/Dentals', methods=['POST'])
+def Dental():
+    name = request.form['name']
+    phone_number = request.form['phone_number']
+    district = request.form['district']
+    tehsil = request.form['tehsil']
+    address = request.form['address']
+    town = request.form['town']
+    new_newsletter = Dentals(name=name, phone_number=phone_number, district=district, tehsil=tehsil, address=address, town=town)
+    db.session.add(new_newsletter)
+    db.session.commit()
+    flash('Dentals data Added successfully!', 'success')
     return redirect(url_for('index'))
