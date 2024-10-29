@@ -4,7 +4,8 @@ from app.models import (
     Subscription, Solar_shops, Karyana_shops, Real_estates, Bird_shops, 
     fast_foods, Housing_schemes, Madaris, Hotels, Lodhran_profile, 
     Marriage_halls, Union_councils, Lawyers, Furniture_shops, 
-    Software_houses, Dentals, Electronics_shops, Agriculture_shops
+    Software_houses, Dentals, Electronics_shops, Electrical_stores, 
+    Agriculture_shops
 )
 from sqlalchemy.exc import IntegrityError
 
@@ -256,4 +257,18 @@ def Electronics_shop():
     db.session.add(new_newsletter)
     db.session.commit()
     flash('Electronics Shops data Added successfully!', 'success')
+    return redirect(url_for('index'))
+
+@app.route('/Electrical_stores', methods=['POST'])
+def Electrical_store():
+    name = request.form['name']
+    phone_number = request.form['phone_number']
+    district = request.form['district']
+    tehsil = request.form['tehsil']
+    address = request.form['address']
+    town = request.form['town']
+    new_newsletter = Electrical_stores(name=name, phone_number=phone_number, district=district, tehsil=tehsil, address=address, town=town)
+    db.session.add(new_newsletter)
+    db.session.commit()
+    flash('Electrical Stores data Added successfully!', 'success')
     return redirect(url_for('index'))
