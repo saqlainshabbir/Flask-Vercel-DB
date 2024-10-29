@@ -433,8 +433,8 @@
     </form>
 </div> -->
 
-<div class="popup">
-    <form class="form" action="{{ url_for('Car_work_shops') }}" method="POST">
+<!-- <div class="popup">
+    <form class="form" action="{{ url_for('Car_work_shop') }}" method="POST">
         <div class="section-title">Create a Car Work Shops Data</div>
         <input placeholder="Enter your name" name="name" type="text" class="input_field" required>
         <input placeholder="Enter Phone Number" name="phone_number" type="number" class="input_field" required>
@@ -443,6 +443,19 @@
         <input placeholder="Enter address" name="address" type="text" class="input_field" required>
         <input placeholder="Enter town" name="town" type="text" class="input_field" required>
         <button class="submit">Create Car Work Shops</button>
+    </form>
+</div> -->
+
+<div class="popup">
+    <form class="form" action="{{ url_for('Tractors_dealer') }}" method="POST">
+        <div class="section-title">Create a Tractors Dealers Data</div>
+        <input placeholder="Enter your name" name="name" type="text" class="input_field" required>
+        <input placeholder="Enter Phone Number" name="phone_number" type="number" class="input_field" required>
+        <input placeholder="Enter district" name="district" type="text" class="input_field" required>
+        <input placeholder="Enter tehsil" name="tehsil" type="text" class="input_field" required>
+        <input placeholder="Enter address" name="address" type="text" class="input_field" required>
+        <input placeholder="Enter town" name="town" type="text" class="input_field" required>
+        <button class="submit">Create Tractors Dealers</button>
     </form>
 </div>
 

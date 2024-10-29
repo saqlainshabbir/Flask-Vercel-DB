@@ -6,7 +6,7 @@ from app.models import (
     Marriage_halls, Union_councils, Lawyers, Furniture_shops, 
     Software_houses, Dentals, Electronics_shops, Electrical_stores, 
     Sports_shops, Car_washses, Car_dealers, Bike_dealers, 
-    Car_work_shops, Agriculture_shops
+    Car_work_shops, Tractors_dealers, Agriculture_shops
 )
 from sqlalchemy.exc import IntegrityError
 
@@ -341,5 +341,19 @@ def Car_work_shop():
     new_newsletter = Car_work_shops(name=name, phone_number=phone_number, district=district, tehsil=tehsil, address=address, town=town)
     db.session.add(new_newsletter)
     db.session.commit()
-    flash('Car Dealers data Added successfully!', 'success')
+    flash('Car Work Shops data Added successfully!', 'success')
+    return redirect(url_for('index'))
+
+@app.route('/Tractors_dealers', methods=['POST'])
+def Tractors_dealer():
+    name = request.form['name']
+    phone_number = request.form['phone_number']
+    district = request.form['district']
+    tehsil = request.form['tehsil']
+    address = request.form['address']
+    town = request.form['town']
+    new_newsletter = Tractors_dealers(name=name, phone_number=phone_number, district=district, tehsil=tehsil, address=address, town=town)
+    db.session.add(new_newsletter)
+    db.session.commit()
+    flash('Tractors Dealers data Added successfully!', 'success')
     return redirect(url_for('index'))
