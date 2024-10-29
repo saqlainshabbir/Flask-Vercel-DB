@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, url_for, flash
 from app import app, db
-from app.models import Subscription, Solar_shops, Karyana_shops, Real_estates, Bird_shops, fast_foods, Housing_schemes, Madaris, Hotels, Lodhran_profile, Marriage_halls, Union_councils, Agriculture_shops
+from app.models import Subscription, Solar_shops, Karyana_shops, Real_estates, Bird_shops, fast_foods, Housing_schemes, Madaris, Hotels, Lodhran_profile, Marriage_halls, Union_councils, Lawyers, Agriculture_shops
 from sqlalchemy.exc import IntegrityError
 
 @app.route('/')
@@ -180,5 +180,19 @@ def Union_council():
     new_newsletter = Union_councils(Union_council_name=Union_council_name, Union_council_discription=Union_council_discription)
     db.session.add(new_newsletter)
     db.session.commit()
-    flash('Lodhran Profile created successfully!', 'success')
+    flash('Union Councils created successfully!', 'success')
+    return redirect(url_for('index'))
+
+@app.route('/Lawyers', methods=['POST'])
+def Lawyer():
+    name = request.form['name']
+    phone_number = request.form['phone_number']
+    district = request.form['district']
+    tehsil = request.form['tehsil']
+    address = request.form['address']
+    town = request.form['town']
+    new_newsletter = Lawyers(name=name, phone_number=phone_number, district=district, tehsil=tehsil, address=address, town=town)
+    db.session.add(new_newsletter)
+    db.session.commit()
+    flash('Lawyers data Added successfully!', 'success')
     return redirect(url_for('index'))
