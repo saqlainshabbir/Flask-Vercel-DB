@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, url_for, flash
 from app import app, db
-from app.models import Subscription, Solar_shops, Karyana_shops, Real_estates, Bird_shops, fast_foods, Housing_schemes, Madaris, Hotels, Lodhran_profile, Marriage_halls, Agriculture_shops
+from app.models import Subscription, Solar_shops, Karyana_shops, Real_estates, Bird_shops, fast_foods, Housing_schemes, Madaris, Hotels, Lodhran_profile, Marriage_halls, Union_councils, Agriculture_shops
 from sqlalchemy.exc import IntegrityError
 
 @app.route('/')
@@ -171,4 +171,14 @@ def Marriage_hall():
     db.session.add(new_newsletter)
     db.session.commit()
     flash('Marriage halls created successfully!', 'success')
+    return redirect(url_for('index'))
+
+@app.route('/Union_councils', methods=['POST'])
+def Union_council():
+    Union_council_name = request.form['Union_council_name']
+    Union_council_discription = request.form['Union_council_discription']
+    new_newsletter = Union_councils(Union_council_name=Union_council_name, Union_council_discription=Union_council_discription)
+    db.session.add(new_newsletter)
+    db.session.commit()
+    flash('Lodhran Profile created successfully!', 'success')
     return redirect(url_for('index'))
