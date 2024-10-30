@@ -376,20 +376,14 @@ def Users():
 @app.route('/Vehicles', methods=['POST'])
 def Vehicle():
     title = request.form['title']
-    description = request.form['description']
     price = request.form['price']
-    category = request.form['category']
-    make = request.form['make']
-    model = request.form['model']
     year = request.form['year']
     mileage = request.form['mileage']
     transmission = request.form['transmission']
     fuel_type = request.form['fuel_type']
-    color = request.form['color']
     engine_capacity = request.form['engine_capacity']
-    condition = request.form['condition']
     location = request.form['location']
-    new_vehicle = Vehicles(title=title, description=description, price=price, category=category, make=make, model=model, year=year, mileage=mileage, transmission=transmission,fuel_type=fuel_type, color=color, engine_capacity=engine_capacity, condition=condition, location=location)
+    new_vehicle = Vehicles(title=title, price=price, year=year, mileage=mileage, transmission=transmission,fuel_type=fuel_type, engine_capacity=engine_capacity, location=location)
     db.session.add(new_vehicle)
     db.session.commit()
     flash('Vehicles data Added successfully!', 'success')

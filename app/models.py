@@ -283,17 +283,11 @@ class Vehicles(db.Model):
     __tablename__ = 'vehicles'
     vehicle_id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(150), nullable=False)
-    description = db.Column(db.Text, nullable=True)
     price = db.Column(db.Float, nullable=False)
-    category = db.Column(db.String(50), nullable=False)  # e.g., Car, Motorcycle
-    make = db.Column(db.String(50), nullable=False)
-    model = db.Column(db.String(50), nullable=False)
     year = db.Column(db.Integer, nullable=False)
     mileage = db.Column(db.Integer, nullable=False)
     transmission = db.Column(db.String(50), nullable=False)  # e.g., Automatic, Manual
     fuel_type = db.Column(db.String(50), nullable=False)  # e.g., Petrol, Diesel
-    color = db.Column(db.String(50), nullable=True)
     engine_capacity = db.Column(db.Integer, nullable=True)
-    condition = db.Column(db.String(50), nullable=False)  # e.g., New, Used
     location = db.Column(db.String(120), nullable=True)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
