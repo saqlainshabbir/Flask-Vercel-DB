@@ -6,7 +6,8 @@ from app.models import (
     Marriage_halls, Union_councils, Lawyers, Furniture_shops, 
     Software_houses, Dentals, Electronics_shops, Electrical_stores, 
     Sports_shops, Car_washses, Car_dealers, Bike_dealers, 
-    Car_work_shops, Tractors_dealers, Agriculture_shops
+    Car_work_shops, Tractors_dealers, Vehicles, User, 
+    Agriculture_shops
 )
 from sqlalchemy.exc import IntegrityError
 
@@ -356,4 +357,41 @@ def Tractors_dealer():
     db.session.add(new_newsletter)
     db.session.commit()
     flash('Tractors Dealers data Added successfully!', 'success')
+    return redirect(url_for('index'))
+
+@app.route('/User', methods=['POST'])
+def Users():
+    name = request.form['name']
+    email = request.form['email']
+    password_hash = request.form['password_hash']
+    phone_number = request.form['phone_number']
+    location = request.form['location']
+    user_type = request.form['user_type']
+    new_user = User(name=name, email=email, password_hash=password_hash, phone_number=phone_number, location=location, user_type=user_type)
+    db.session.add(new_user)
+    db.session.commit()
+    flash('New User Added successfully!', 'success')
+    return redirect(url_for('index'))
+
+@app.route('/Vehicles', methods=['POST'])
+def Vehicle():
+    title = request.form['title']
+    description = request.form['description']
+    price = request.form['price']
+    category = request.form['category']
+    make = request.form['make']
+    model = request.form['model']
+    year = request.form['year']
+    mileage = request.form['mileage']
+    transmission = request.form['transmission']
+    fuel_type = request.form['fuel_type']
+    color = request.form['color']
+    engine_capacity = request.form['engine_capacity']
+    condition = request.form['condition']
+    location = request.form['location']
+    created_by = request.form['created_by']
+    new_vehicle = Vehicles(title=title, description=description, price=price, category=category, make=make, model=model, year=year, mileage=mileage, transmission=transmission,fuel_type=fuel_type, color=color, engine_capacity=engine_capacity, condition=condition, location=location, created_by=created_by)
+    db.session.add(new_vehicle)
+    db.session.commit()
+    flash('Vehicles data Added successfully!', 'success')
     return redirect(url_for('index'))

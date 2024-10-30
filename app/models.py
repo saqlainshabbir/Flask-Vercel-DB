@@ -267,3 +267,34 @@ class Tractors_dealers(db.Model):
     address = db.Column(db.String(200), nullable=False)
     town = db.Column(db.String(50), nullable=False)
     published_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+class User(db.Model):
+    __tablename__ = 'users'
+    user_id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(120), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password_hash = db.Column(db.String(128), nullable=False)
+    phone_number = db.Column(db.String(120), nullable=True)
+    location = db.Column(db.String(120), nullable=True)
+    user_type = db.Column(db.String(50), nullable=False)  # e.g., Dealer, Individual
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+class Vehicles(db.Model):
+    __tablename__ = 'vehicles'
+    vehicle_id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(150), nullable=False)
+    description = db.Column(db.Text, nullable=True)
+    price = db.Column(db.Float, nullable=False)
+    category = db.Column(db.String(50), nullable=False)  # e.g., Car, Motorcycle
+    make = db.Column(db.String(50), nullable=False)
+    model = db.Column(db.String(50), nullable=False)
+    year = db.Column(db.Integer, nullable=False)
+    mileage = db.Column(db.Integer, nullable=False)
+    transmission = db.Column(db.String(50), nullable=False)  # e.g., Automatic, Manual
+    fuel_type = db.Column(db.String(50), nullable=False)  # e.g., Petrol, Diesel
+    color = db.Column(db.String(50), nullable=True)
+    engine_capacity = db.Column(db.Integer, nullable=True)
+    condition = db.Column(db.String(50), nullable=False)  # e.g., New, Used
+    location = db.Column(db.String(120), nullable=True)
+    created_by = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
