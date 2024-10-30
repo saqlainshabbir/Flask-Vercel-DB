@@ -459,7 +459,7 @@
     </form>
 </div> -->
 
-<div class="popup">
+<!-- <div class="popup">
     <form class="form" action="{{ url_for('Users') }}" method="POST">
         <div class="section-title">Create a New User</div>
         <input placeholder="Enter your name" name="name" type="text" class="input_field" required>
@@ -470,7 +470,7 @@
         <input placeholder="Enter user_type" name="user_type" type="text" class="input_field" required>
         <button class="submit">Create New User</button>
     </form>
-</div>
+</div> -->
 
 <div class="popup">
     <form class="form" action="{{ url_for('Vehicle') }}" method="POST">
@@ -483,6 +483,7 @@
         <input placeholder="Enter car fuel_type" name="fuel_type" type="text" class="input_field" required>
         <input placeholder="Enter car engine_capacity (cc)" name="engine_capacity" type="number" class="input_field" required>
         <input placeholder="Enter car location" name="location" type="text" class="input_field" required>
+        <input placeholder="Enter image url" name="image_url" type="url" class="input_field" required>
         <button class="submit">Create Vehicle</button>
     </form>
 </div>
