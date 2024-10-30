@@ -296,5 +296,4 @@ class Vehicles(db.Model):
     engine_capacity = db.Column(db.Integer, nullable=True)
     condition = db.Column(db.String(50), nullable=False)  # e.g., New, Used
     location = db.Column(db.String(120), nullable=True)
-    created_by = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)

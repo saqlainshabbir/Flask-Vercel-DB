@@ -389,8 +389,7 @@ def Vehicle():
     engine_capacity = request.form['engine_capacity']
     condition = request.form['condition']
     location = request.form['location']
-    created_by = request.form['created_by']
-    new_vehicle = Vehicles(title=title, description=description, price=price, category=category, make=make, model=model, year=year, mileage=mileage, transmission=transmission,fuel_type=fuel_type, color=color, engine_capacity=engine_capacity, condition=condition, location=location, created_by=created_by)
+    new_vehicle = Vehicles(title=title, description=description, price=price, category=category, make=make, model=model, year=year, mileage=mileage, transmission=transmission,fuel_type=fuel_type, color=color, engine_capacity=engine_capacity, condition=condition, location=location)
     db.session.add(new_vehicle)
     db.session.commit()
     flash('Vehicles data Added successfully!', 'success')
