@@ -473,7 +473,7 @@
 </div> -->
 
 <div class="popup">
-    <form class="form" action="{{ url_for('Vehicle') }}" method="POST">
+    <form class="form" action="{{ url_for('Vehicle') }}" method="POST" enctype="multipart/form-data">
         <div class="section-title">Create a Vehicles Data</div>
         <input placeholder="Enter your car title" name="title" type="text" class="input_field" required>
         <input placeholder="Enter car price" name="price" type="number" class="input_field" required>
