@@ -12,6 +12,7 @@ from app.models import (
 )
 from sqlalchemy.exc import IntegrityError
 from werkzeug.utils import secure_filename
+from flask import send_from_directory
 
 # Set the folder to save images
 UPLOAD_FOLDER = 'static/uploads'
@@ -380,6 +381,10 @@ def Users():
     flash('New User Added successfully!', 'success')
     return redirect(url_for('index'))
 
+@app.route('/uploads/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
 @app.route('/Vehicles', methods=['POST'])
 def Vehicle():
     title = request.form['title']
@@ -397,7 +402,7 @@ def Vehicle():
         filename = secure_filename(image_file.filename)
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         image_file.save(file_path)
-        image_url = filename  # Store the relative path
+        image_url = url_for('uploaded_file', filename=filename, _external=True)
     new_vehicle = Vehicles(title=title, price=price, year=year, mileage=mileage, transmission=transmission,fuel_type=fuel_type, engine_capacity=engine_capacity, location=location, image_file=image_url)
     db.session.add(new_vehicle)
     db.session.commit()
