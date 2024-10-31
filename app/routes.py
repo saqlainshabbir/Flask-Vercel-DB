@@ -392,6 +392,7 @@ def Vehicle():
     location = request.form['location']
      # Handle image file upload
     image_file = request.files['image_file']
+    image_url = None
     if image_file:
         filename = secure_filename(image_file.filename)
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
