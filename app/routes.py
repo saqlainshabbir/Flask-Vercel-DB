@@ -397,8 +397,8 @@ def Vehicle():
         filename = secure_filename(image_file.filename)
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         image_file.save(file_path)
-        image_url = file_path  # Store the relative path
-    new_vehicle = Vehicles(title=title, price=price, year=year, mileage=mileage, transmission=transmission,fuel_type=fuel_type, engine_capacity=engine_capacity, location=location, image_file=image_file)
+        image_url = filename  # Store the relative path
+    new_vehicle = Vehicles(title=title, price=price, year=year, mileage=mileage, transmission=transmission,fuel_type=fuel_type, engine_capacity=engine_capacity, location=location, image_file=image_url)
     db.session.add(new_vehicle)
     db.session.commit()
     flash('Vehicles data Added successfully!', 'success')
