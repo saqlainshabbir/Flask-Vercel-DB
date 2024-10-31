@@ -403,3 +403,8 @@ def Vehicle():
     db.session.commit()
     flash('Vehicles data Added successfully!', 'success')
     return redirect(url_for('index'))
+
+@app.route('/Vehicles', methods=['GET'])
+def get_vehicles():
+    vehicles = Vehicles.query.all()
+    return render_template('vehicles.html', vehicles=vehicles)
