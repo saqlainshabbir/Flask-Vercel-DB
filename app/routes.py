@@ -1,5 +1,6 @@
 from flask import render_template, request, redirect, url_for, flash
 from app import app, db
+import os
 from app.models import (
     Subscription, Solar_shops, Karyana_shops, Real_estates, Bird_shops, 
     fast_foods, Housing_schemes, Madaris, Hotels, Lodhran_profile, 
@@ -10,6 +11,11 @@ from app.models import (
     Agriculture_shops
 )
 from sqlalchemy.exc import IntegrityError
+from werkzeug.utils import secure_filename
+
+# Set the folder to save images
+UPLOAD_FOLDER = 'static/uploads'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
 def index():
@@ -383,7 +389,13 @@ def Vehicle():
     fuel_type = request.form['fuel_type']
     engine_capacity = request.form['engine_capacity']
     location = request.form['location']
-    image_url = request.form['image_url']
+     # Handle image file upload
+    image_file = request.files['image_file']
+    if image_file:
+        filename = secure_filename(image_file.filename)
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        image_file.save(file_path)
+        image_url = file_path  # Store the relative path
     new_vehicle = Vehicles(title=title, price=price, year=year, mileage=mileage, transmission=transmission,fuel_type=fuel_type, engine_capacity=engine_capacity, location=location, image_url=image_url)
     db.session.add(new_vehicle)
     db.session.commit()
