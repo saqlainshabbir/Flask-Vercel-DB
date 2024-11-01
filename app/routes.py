@@ -7,7 +7,7 @@ from app.models import (
     Marriage_halls, Union_councils, Lawyers, Furniture_shops, 
     Software_houses, Dentals, Electronics_shops, Electrical_stores, 
     Sports_shops, Car_washses, Car_dealers, Bike_dealers, 
-    Car_work_shops, Tractors_dealers, Vehicles, User, 
+    Car_work_shops, Tractors_dealers, Vehicles, User, Book_centers,
     Agriculture_shops
 )
 from sqlalchemy.exc import IntegrityError
@@ -413,3 +413,17 @@ def Vehicle():
 def get_vehicles():
     vehicles = Vehicles.query.all()
     return render_template('vehicles.html', vehicles=vehicles)
+
+@app.route('/Book_centers', methods=['POST'])
+def Book_center():
+    name = request.form['name']
+    phone_number = request.form['phone_number']
+    district = request.form['district']
+    tehsil = request.form['tehsil']
+    address = request.form['address']
+    town = request.form['town']
+    new_newsletter = Book_centers(name=name, phone_number=phone_number, district=district, tehsil=tehsil, address=address, town=town)
+    db.session.add(new_newsletter)
+    db.session.commit()
+    flash('Tractors Dealers data Added successfully!', 'success')
+    return redirect(url_for('index'))
