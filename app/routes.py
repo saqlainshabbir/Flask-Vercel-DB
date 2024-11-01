@@ -8,7 +8,7 @@ from app.models import (
     Software_houses, Dentals, Electronics_shops, Electrical_stores, 
     Sports_shops, Car_washses, Car_dealers, Bike_dealers, 
     Car_work_shops, Tractors_dealers, Vehicles, User, Book_centers,
-    Travelling_agencies, Agriculture_shops
+    Travelling_agencies, Beauty_parlours, Agriculture_shops
 )
 from sqlalchemy.exc import IntegrityError
 from werkzeug.utils import secure_filename
@@ -437,6 +437,20 @@ def Travelling_agencie():
     address = request.form['address']
     town = request.form['town']
     new_newsletter = Travelling_agencies(name=name, phone_number=phone_number, district=district, tehsil=tehsil, address=address, town=town)
+    db.session.add(new_newsletter)
+    db.session.commit()
+    flash('Travelling Agencies data Added successfully!', 'success')
+    return redirect(url_for('index'))
+
+@app.route('/Beauty_parlours', methods=['POST'])
+def Beauty_parlour():
+    name = request.form['name']
+    phone_number = request.form['phone_number']
+    district = request.form['district']
+    tehsil = request.form['tehsil']
+    address = request.form['address']
+    town = request.form['town']
+    new_newsletter = Beauty_parlours(name=name, phone_number=phone_number, district=district, tehsil=tehsil, address=address, town=town)
     db.session.add(new_newsletter)
     db.session.commit()
     flash('Travelling Agencies data Added successfully!', 'success')
