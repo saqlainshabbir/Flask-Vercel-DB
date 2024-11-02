@@ -5,7 +5,7 @@ from app.models import (
     Subscription, Solar_shops, Karyana_shops, Real_estates, Bird_shops, 
     fast_foods, Housing_schemes, Madaris, Hotels, Lodhran_profile, 
     Marriage_halls, Union_councils, Lawyers, Furniture_shops, Clinics,
-    Software_houses, Dentals, Electronics_shops, Electrical_stores, 
+    Software_houses, Dentals, Electronics_shops, Electrical_stores, Dairy_farms,
     Sports_shops, Car_washses, Car_dealers, Bike_dealers, Gyms,  Taylors_shops,
     Car_work_shops, Tractors_dealers, Vehicles, User, Book_centers, Printing_shops,
     Travelling_agencies, Beauty_parlours, Building_materials, Agriculture_shops,
@@ -677,6 +677,20 @@ def Academie():
     address = request.form['address']
     town = request.form['town']
     new_newsletter = Academies(name=name, phone_number=phone_number, district=district, tehsil=tehsil, address=address, town=town)
+    db.session.add(new_newsletter)
+    db.session.commit()
+    flash('Academy Added successfully!', 'success')
+    return redirect(url_for('index'))
+
+@app.route('/Dairy_farms', methods=['POST'])
+def Dairy_farm():
+    name = request.form['name']
+    phone_number = request.form['phone_number']
+    district = request.form['district']
+    tehsil = request.form['tehsil']
+    address = request.form['address']
+    town = request.form['town']
+    new_newsletter = Dairy_farms(name=name, phone_number=phone_number, district=district, tehsil=tehsil, address=address, town=town)
     db.session.add(new_newsletter)
     db.session.commit()
     flash('Academy Added successfully!', 'success')
