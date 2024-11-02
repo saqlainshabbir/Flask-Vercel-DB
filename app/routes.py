@@ -6,7 +6,7 @@ from app.models import (
     fast_foods, Housing_schemes, Madaris, Hotels, Lodhran_profile, 
     Marriage_halls, Union_councils, Lawyers, Furniture_shops,
     Software_houses, Dentals, Electronics_shops, Electrical_stores, 
-    Sports_shops, Car_washses, Car_dealers, Bike_dealers,
+    Sports_shops, Car_washses, Car_dealers, Bike_dealers, Gyms,
     Car_work_shops, Tractors_dealers, Vehicles, User, Book_centers,
     Travelling_agencies, Beauty_parlours, Building_materials, Agriculture_shops,
     Gift_and_toys_shops, Bakeries, Swimming_pools, Cement_shops, Gynaecologists,
@@ -584,58 +584,16 @@ def Mobile_shop():
     flash('Mobile Shops data Added successfully!', 'success')
     return redirect(url_for('index'))
 
-# @app.route('/Gyms', methods=['POST'])
-# def Gym():
-#     name = request.form['name']
-#     phone_number = request.form['phone_number']
-#     district = request.form['district']
-#     tehsil = request.form['tehsil']
-#     address = request.form['address']
-#     town = request.form['town']
-#     new_newsletter = Gyms(name=name, phone_number=phone_number, district=district, tehsil=tehsil, address=address, town=town)
-#     db.session.add(new_newsletter)
-#     db.session.commit()
-#     flash('Gyms data Added successfully!', 'success')
-#     return redirect(url_for('index'))
-
-# @app.route('/Clinics', methods=['POST'])
-# def Clinic():
-#     name = request.form['name']
-#     phone_number = request.form['phone_number']
-#     district = request.form['district']
-#     tehsil = request.form['tehsil']
-#     address = request.form['address']
-#     town = request.form['town']
-#     new_newsletter = Clinics(name=name, phone_number=phone_number, district=district, tehsil=tehsil, address=address, town=town)
-#     db.session.add(new_newsletter)
-#     db.session.commit()
-#     flash('Clinics data Added successfully!', 'success')
-#     return redirect(url_for('index'))
-
-# @app.route('/Printing_shops', methods=['POST'])
-# def Printing_shop():
-#     name = request.form['name']
-#     phone_number = request.form['phone_number']
-#     district = request.form['district']
-#     tehsil = request.form['tehsil']
-#     address = request.form['address']
-#     town = request.form['town']
-#     new_newsletter = Printing_shops(name=name, phone_number=phone_number, district=district, tehsil=tehsil, address=address, town=town)
-#     db.session.add(new_newsletter)
-#     db.session.commit()
-#     flash('Printing Shop data Added successfully!', 'success')
-#     return redirect(url_for('index'))
-
-# @app.route('/Taylors_shops', methods=['POST'])
-# def Taylors_shop():
-#     name = request.form['name']
-#     phone_number = request.form['phone_number']
-#     district = request.form['district']
-#     tehsil = request.form['tehsil']
-#     address = request.form['address']
-#     town = request.form['town']
-#     new_newsletter = Taylors_shops(name=name, phone_number=phone_number, district=district, tehsil=tehsil, address=address, town=town)
-#     db.session.add(new_newsletter)
-#     db.session.commit()
-#     flash('Printing Shop data Added successfully!', 'success')
-#     return redirect(url_for('index'))
+@app.route('/Gymss', methods=['POST'])
+def Gym():
+    name = request.form['name']
+    phone_number = request.form['phone_number']
+    district = request.form['district']
+    tehsil = request.form['tehsil']
+    address = request.form['address']
+    town = request.form['town']
+    new_newsletter = Gyms(name=name, phone_number=phone_number, district=district, tehsil=tehsil, address=address, town=town)
+    db.session.add(new_newsletter)
+    db.session.commit()
+    flash('Mobile Shops data Added successfully!', 'success')
+    return redirect(url_for('index'))
