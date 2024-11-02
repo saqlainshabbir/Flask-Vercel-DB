@@ -10,7 +10,8 @@ from app.models import (
     Car_work_shops, Tractors_dealers, Vehicles, User, Book_centers, Printing_shops,
     Travelling_agencies, Beauty_parlours, Building_materials, Agriculture_shops,
     Gift_and_toys_shops, Bakeries, Swimming_pools, Cement_shops, Gynaecologists,
-    Laboratories, Computers, Mobile_shops, Marbles_shops, Pest_controls, Academies
+    Laboratories, Computers, Mobile_shops, Marbles_shops, Pest_controls, Academies,
+    Shoes_stores
 )
 from sqlalchemy.exc import IntegrityError
 from werkzeug.utils import secure_filename
@@ -693,5 +694,19 @@ def Dairy_farm():
     new_newsletter = Dairy_farms(name=name, phone_number=phone_number, district=district, tehsil=tehsil, address=address, town=town)
     db.session.add(new_newsletter)
     db.session.commit()
-    flash('Academy Added successfully!', 'success')
+    flash('Dairy Farm Added successfully!', 'success')
+    return redirect(url_for('index'))
+
+@app.route('/Shoes_stores', methods=['POST'])
+def Shoes_store():
+    name = request.form['name']
+    phone_number = request.form['phone_number']
+    district = request.form['district']
+    tehsil = request.form['tehsil']
+    address = request.form['address']
+    town = request.form['town']
+    new_newsletter = Shoes_stores(name=name, phone_number=phone_number, district=district, tehsil=tehsil, address=address, town=town)
+    db.session.add(new_newsletter)
+    db.session.commit()
+    flash('Dairy Farm Added successfully!', 'success')
     return redirect(url_for('index'))
