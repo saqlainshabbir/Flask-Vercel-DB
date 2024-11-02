@@ -10,7 +10,7 @@ from app.models import (
     Car_work_shops, Tractors_dealers, Vehicles, User, Book_centers, Printing_shops,
     Travelling_agencies, Beauty_parlours, Building_materials, Agriculture_shops,
     Gift_and_toys_shops, Bakeries, Swimming_pools, Cement_shops, Gynaecologists,
-    Laboratories, Computers, Mobile_shops, Marbles_shops
+    Laboratories, Computers, Mobile_shops, Marbles_shops, Pest_controls
 )
 from sqlalchemy.exc import IntegrityError
 from werkzeug.utils import secure_filename
@@ -649,6 +649,20 @@ def Marbles_shop():
     address = request.form['address']
     town = request.form['town']
     new_newsletter = Marbles_shops(name=name, phone_number=phone_number, district=district, tehsil=tehsil, address=address, town=town)
+    db.session.add(new_newsletter)
+    db.session.commit()
+    flash('Marbles Shop Added successfully!', 'success')
+    return redirect(url_for('index'))
+
+@app.route('/Pest_controls', methods=['POST'])
+def Pest_control():
+    name = request.form['name']
+    phone_number = request.form['phone_number']
+    district = request.form['district']
+    tehsil = request.form['tehsil']
+    address = request.form['address']
+    town = request.form['town']
+    new_newsletter = Pest_controls(name=name, phone_number=phone_number, district=district, tehsil=tehsil, address=address, town=town)
     db.session.add(new_newsletter)
     db.session.commit()
     flash('Marbles Shop Added successfully!', 'success')
