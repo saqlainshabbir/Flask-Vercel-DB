@@ -9,7 +9,8 @@ from app.models import (
     Sports_shops, Car_washses, Car_dealers, Bike_dealers, 
     Car_work_shops, Tractors_dealers, Vehicles, User, Book_centers,
     Travelling_agencies, Beauty_parlours, Building_materials, Agriculture_shops,
-    Gift_and_toys_shops, Bakeries, Swimming_pools, Cement_shops, Gynaecologists
+    Gift_and_toys_shops, Bakeries, Swimming_pools, Cement_shops, Gynaecologists,
+    Laboratories, Computers
 )
 from sqlalchemy.exc import IntegrityError
 from werkzeug.utils import secure_filename
@@ -538,5 +539,33 @@ def Gynaecologist():
     new_newsletter = Gynaecologists(name=name, phone_number=phone_number, district=district, tehsil=tehsil, address=address, town=town)
     db.session.add(new_newsletter)
     db.session.commit()
-    flash('Cement Shops data Added successfully!', 'success')
+    flash('Gynaecologists data Added successfully!', 'success')
+    return redirect(url_for('index'))
+
+@app.route('/Laboratories', methods=['POST'])
+def Laboratorie():
+    name = request.form['name']
+    phone_number = request.form['phone_number']
+    district = request.form['district']
+    tehsil = request.form['tehsil']
+    address = request.form['address']
+    town = request.form['town']
+    new_newsletter = Laboratories(name=name, phone_number=phone_number, district=district, tehsil=tehsil, address=address, town=town)
+    db.session.add(new_newsletter)
+    db.session.commit()
+    flash('Laboratories data Added successfully!', 'success')
+    return redirect(url_for('index'))
+
+@app.route('/Computers', methods=['POST'])
+def Computer():
+    name = request.form['name']
+    phone_number = request.form['phone_number']
+    district = request.form['district']
+    tehsil = request.form['tehsil']
+    address = request.form['address']
+    town = request.form['town']
+    new_newsletter = Computers(name=name, phone_number=phone_number, district=district, tehsil=tehsil, address=address, town=town)
+    db.session.add(new_newsletter)
+    db.session.commit()
+    flash('Laboratories data Added successfully!', 'success')
     return redirect(url_for('index'))
