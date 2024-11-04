@@ -4,7 +4,7 @@ import os
 from app.models import (
     Subscription, Solar_shops, Karyana_shops, Real_estates, Bird_shops, 
     fast_foods, Housing_schemes, Madaris, Hotels, Lodhran_profile, 
-    Marriage_halls, Union_councils, Lawyers, Furniture_shops, Clinics,
+    Marriage_halls, Union_councils_dunyapur, Union_councils_lodhran, Lawyers, Furniture_shops, Clinics,
     Software_houses, Dentals, Electronics_shops, Electrical_stores, Dairy_farms,
     Sports_shops, Car_washses, Car_dealers, Bike_dealers, Gyms,  Taylors_shops,
     Car_work_shops, Tractors_dealers, Book_centers, Printing_shops,
@@ -12,7 +12,7 @@ from app.models import (
     Gift_and_toys_shops, Bakeries, Swimming_pools, Cement_shops, Gynaecologists,
     Laboratories, Computers, Mobile_shops, Marbles_shops, Pest_controls, Academies,
     Shoes_stores, Private_colleges, Private_schools, Private_hospitals, Orthopedic_hospitals,
-    Poultry_farms, Paints_shops, Hardware_tool_shops
+    Poultry_farms, Paints_shops, Hardware_tool_shops, Union_councils_kahrorpacca
 )
 from sqlalchemy.exc import IntegrityError
 
@@ -186,14 +186,34 @@ def Marriage_hall():
     flash('Marriage halls created successfully!', 'success')
     return redirect(url_for('index'))
 
-@app.route('/Union_councils', methods=['POST'])
-def Union_council():
+@app.route('/Union_councils_dunyapur', methods=['POST'])
+def Union_council_dunyapur():
     Union_council_name = request.form['Union_council_name']
     Union_council_discription = request.form['Union_council_discription']
-    new_newsletter = Union_councils(Union_council_name=Union_council_name, Union_council_discription=Union_council_discription)
+    new_newsletter = Union_councils_dunyapur(Union_council_name=Union_council_name, Union_council_discription=Union_council_discription)
     db.session.add(new_newsletter)
     db.session.commit()
-    flash('Union Councils created successfully!', 'success')
+    flash('Union Councils of Dunyapur created successfully!', 'success')
+    return redirect(url_for('index'))
+
+@app.route('/Union_councils_lodhran', methods=['POST'])
+def Union_council_lodhran():
+    Union_council_name = request.form['Union_council_name']
+    Union_council_discription = request.form['Union_council_discription']
+    new_newsletter = Union_councils_lodhran(Union_council_name=Union_council_name, Union_council_discription=Union_council_discription)
+    db.session.add(new_newsletter)
+    db.session.commit()
+    flash('Union Councils of Lodhran created successfully!', 'success')
+    return redirect(url_for('index'))
+
+@app.route('/Union_councils_kahrorpacca', methods=['POST'])
+def Union_council_kahrorpacca():
+    Union_council_name = request.form['Union_council_name']
+    Union_council_discription = request.form['Union_council_discription']
+    new_newsletter = Union_councils_kahrorpacca(Union_council_name=Union_council_name, Union_council_discription=Union_council_discription)
+    db.session.add(new_newsletter)
+    db.session.commit()
+    flash('Union Councils of Lodhran created successfully!', 'success')
     return redirect(url_for('index'))
 
 @app.route('/Lawyers', methods=['POST'])

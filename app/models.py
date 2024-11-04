@@ -128,7 +128,22 @@ class Marriage_halls(db.Model):
     published_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
 # New schema for storing Union Councils of Dunyapur details
-class Union_councils(db.Model):
+class Union_councils_dunyapur(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    Union_council_name = db.Column(db.String(100), nullable=False)
+    Union_council_discription = db.Column(db.String(200), nullable=False)
+    published_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+# New schema for storing Union Councils of Lodhran details
+class Union_councils_lodhran(db.Model):
+    __table_args__ = {'extend_existing': True}
+    id = db.Column(db.Integer, primary_key=True)
+    Union_council_name = db.Column(db.String(100), nullable=False)
+    Union_council_discription = db.Column(db.String(200), nullable=False)
+    published_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+# New schema for storing Union Councils of Kahror Pacca details
+class Union_councils_kahrorpacca(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     Union_council_name = db.Column(db.String(100), nullable=False)
     Union_council_discription = db.Column(db.String(200), nullable=False)
