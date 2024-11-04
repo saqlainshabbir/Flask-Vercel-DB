@@ -11,7 +11,7 @@ from app.models import (
     Travelling_agencies, Beauty_parlours, Building_materials, Agriculture_shops,
     Gift_and_toys_shops, Bakeries, Swimming_pools, Cement_shops, Gynaecologists,
     Laboratories, Computers, Mobile_shops, Marbles_shops, Pest_controls, Academies,
-    Shoes_stores, Private_colleges, Private_schools
+    Shoes_stores, Private_colleges, Private_schools, Private_hospitals
 )
 from sqlalchemy.exc import IntegrityError
 from werkzeug.utils import secure_filename
@@ -737,4 +737,18 @@ def Private_school():
     db.session.add(new_newsletter)
     db.session.commit()
     flash('Private School Added successfully!', 'success')
+    return redirect(url_for('index'))
+
+@app.route('/Private_hospitals', methods=['POST'])
+def Private_hospital():
+    name = request.form['name']
+    phone_number = request.form['phone_number']
+    district = request.form['district']
+    tehsil = request.form['tehsil']
+    address = request.form['address']
+    town = request.form['town']
+    new_newsletter = Private_hospitals(name=name, phone_number=phone_number, district=district, tehsil=tehsil, address=address, town=town)
+    db.session.add(new_newsletter)
+    db.session.commit()
+    flash('Private Hospital Added successfully!', 'success')
     return redirect(url_for('index'))
