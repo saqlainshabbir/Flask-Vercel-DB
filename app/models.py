@@ -268,31 +268,6 @@ class Tractors_dealers(db.Model):
     town = db.Column(db.String(50), nullable=False)
     published_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
-class User(db.Model):
-    __tablename__ = 'users'
-    user_id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(120), nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    password_hash = db.Column(db.String(128), nullable=False)
-    phone_number = db.Column(db.String(120), nullable=True)
-    location = db.Column(db.String(120), nullable=True)
-    user_type = db.Column(db.String(50), nullable=False)  # e.g., Dealer, Individual
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-
-class Vehicles(db.Model):
-    __tablename__ = 'vehicles'
-    vehicle_id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(150), nullable=False)
-    price = db.Column(db.Float, nullable=False)
-    year = db.Column(db.Integer, nullable=False)
-    mileage = db.Column(db.Integer, nullable=False)
-    transmission = db.Column(db.String(50), nullable=False)  # e.g., Automatic, Manual
-    fuel_type = db.Column(db.String(50), nullable=False)  # e.g., Petrol, Diesel
-    engine_capacity = db.Column(db.Integer, nullable=True)
-    location = db.Column(db.String(120), nullable=True)
-    image_file = db.Column(db.String(255), nullable=True)
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-
 # New schema for storing Books Center Data details
 class Book_centers(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -582,6 +557,18 @@ class Orthopedic_hospitals(db.Model):
 
 # New schema for storing Poultry Farms Data details
 class Poultry_farms(db.Model):
+    __table_args__ = {'extend_existing': True}
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    phone_number = db.Column(db.String(15), nullable=False)
+    district = db.Column(db.String(50), nullable=False)
+    tehsil = db.Column(db.String(50), nullable=False)
+    address = db.Column(db.String(200), nullable=False)
+    town = db.Column(db.String(50), nullable=False)
+    published_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+# New schema for storing Paints Shops Data details
+class Paints_shops(db.Model):
     __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)

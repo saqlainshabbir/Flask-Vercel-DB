@@ -7,21 +7,14 @@ from app.models import (
     Marriage_halls, Union_councils, Lawyers, Furniture_shops, Clinics,
     Software_houses, Dentals, Electronics_shops, Electrical_stores, Dairy_farms,
     Sports_shops, Car_washses, Car_dealers, Bike_dealers, Gyms,  Taylors_shops,
-    Car_work_shops, Tractors_dealers, Vehicles, User, Book_centers, Printing_shops,
+    Car_work_shops, Tractors_dealers, Book_centers, Printing_shops,
     Travelling_agencies, Beauty_parlours, Building_materials, Agriculture_shops,
     Gift_and_toys_shops, Bakeries, Swimming_pools, Cement_shops, Gynaecologists,
     Laboratories, Computers, Mobile_shops, Marbles_shops, Pest_controls, Academies,
     Shoes_stores, Private_colleges, Private_schools, Private_hospitals, Orthopedic_hospitals,
-    Poultry_farms
+    Poultry_farms, Paints_shops
 )
 from sqlalchemy.exc import IntegrityError
-from werkzeug.utils import secure_filename
-from flask import send_from_directory
-
-# Set the folder to save images
-UPLOAD_FOLDER = 'static/uploads'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
 
 @app.route('/')
 def index():
@@ -370,53 +363,6 @@ def Tractors_dealer():
     db.session.commit()
     flash('Tractors Dealers data Added successfully!', 'success')
     return redirect(url_for('index'))
-
-@app.route('/User', methods=['POST'])
-def Users():
-    name = request.form['name']
-    email = request.form['email']
-    password_hash = request.form['password_hash']
-    phone_number = request.form['phone_number']
-    location = request.form['location']
-    user_type = request.form['user_type']
-    new_user = User(name=name, email=email, password_hash=password_hash, phone_number=phone_number, location=location, user_type=user_type)
-    db.session.add(new_user)
-    db.session.commit()
-    flash('New User Added successfully!', 'success')
-    return redirect(url_for('index'))
-
-@app.route('/uploads/<filename>')
-def uploaded_file(filename):
-    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
-
-@app.route('/Vehicles', methods=['POST'])
-def Vehicle():
-    title = request.form['title']
-    price = request.form['price']
-    year = request.form['year']
-    mileage = request.form['mileage']
-    transmission = request.form['transmission']
-    fuel_type = request.form['fuel_type']
-    engine_capacity = request.form['engine_capacity']
-    location = request.form['location']
-     # Handle image file upload
-    image_file = request.files['image_file']
-    image_url = None
-    if image_file:
-        filename = secure_filename(image_file.filename)
-        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        image_file.save(file_path)
-        image_url = url_for('uploaded_file', filename=filename, _external=True)
-    new_vehicle = Vehicles(title=title, price=price, year=year, mileage=mileage, transmission=transmission,fuel_type=fuel_type, engine_capacity=engine_capacity, location=location, image_file=image_url)
-    db.session.add(new_vehicle)
-    db.session.commit()
-    flash('Vehicles data Added successfully!', 'success')
-    return redirect(url_for('index'))
-
-@app.route('/Vehicles', methods=['GET'])
-def get_vehicles():
-    vehicles = Vehicles.query.all()
-    return render_template('vehicles.html', vehicles=vehicles)
 
 @app.route('/Book_centers', methods=['POST'])
 def Book_center():
@@ -779,5 +725,19 @@ def Poultry_farm():
     new_newsletter = Poultry_farms(name=name, phone_number=phone_number, district=district, tehsil=tehsil, address=address, town=town)
     db.session.add(new_newsletter)
     db.session.commit()
-    flash('Orthopedic Hospital Added successfully!', 'success')
+    flash('Poultry Farm Added successfully!', 'success')
+    return redirect(url_for('index'))
+
+@app.route('/Paints_shops', methods=['POST'])
+def Paints_shop():
+    name = request.form['name']
+    phone_number = request.form['phone_number']
+    district = request.form['district']
+    tehsil = request.form['tehsil']
+    address = request.form['address']
+    town = request.form['town']
+    new_newsletter = Paints_shops(name=name, phone_number=phone_number, district=district, tehsil=tehsil, address=address, town=town)
+    db.session.add(new_newsletter)
+    db.session.commit()
+    flash('Paints Shop Added successfully!', 'success')
     return redirect(url_for('index'))
