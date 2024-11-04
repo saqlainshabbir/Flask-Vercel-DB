@@ -12,7 +12,7 @@ from app.models import (
     Gift_and_toys_shops, Bakeries, Swimming_pools, Cement_shops, Gynaecologists,
     Laboratories, Computers, Mobile_shops, Marbles_shops, Pest_controls, Academies,
     Shoes_stores, Private_colleges, Private_schools, Private_hospitals, Orthopedic_hospitals,
-    Poultry_farms, Paints_shops
+    Poultry_farms, Paints_shops, Hardware_tool_shops
 )
 from sqlalchemy.exc import IntegrityError
 
@@ -737,6 +737,20 @@ def Paints_shop():
     address = request.form['address']
     town = request.form['town']
     new_newsletter = Paints_shops(name=name, phone_number=phone_number, district=district, tehsil=tehsil, address=address, town=town)
+    db.session.add(new_newsletter)
+    db.session.commit()
+    flash('Paints Shop Added successfully!', 'success')
+    return redirect(url_for('index'))
+
+@app.route('/Hardware_tool_shops', methods=['POST'])
+def Hardware_tool_shop():
+    name = request.form['name']
+    phone_number = request.form['phone_number']
+    district = request.form['district']
+    tehsil = request.form['tehsil']
+    address = request.form['address']
+    town = request.form['town']
+    new_newsletter = Hardware_tool_shops(name=name, phone_number=phone_number, district=district, tehsil=tehsil, address=address, town=town)
     db.session.add(new_newsletter)
     db.session.commit()
     flash('Paints Shop Added successfully!', 'success')
